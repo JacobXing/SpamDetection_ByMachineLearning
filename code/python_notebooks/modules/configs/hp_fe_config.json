@@ -1,0 +1,14 @@
+{
+    "count_vector":
+    {
+        "ngram_range": [1, 2],
+        "min_doc_frequency": 0.15,
+        "max_doc_frequency": 0.85
+    },
+    "lda_modelling":
+    {
+        "lda_topics": 5,
+        "iterations": 5
+    }
+
+}

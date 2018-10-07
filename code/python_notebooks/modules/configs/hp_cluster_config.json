@@ -1,0 +1,22 @@
+{
+    "cluster_config":
+    {
+        "clusters": 3,
+        "max_iterations": 300
+    },
+
+    "clustering_features":
+    {
+        "num_tweets": false,
+        "num_followers": false,
+        "num_followings": false,
+        "about_me_length": false,
+        "user_name_length": false,
+        "num_annotations": false,
+        "num_http": false,
+        "tweet_avg_length": false,
+        "num_unique_words": true,
+        "td_entropy": true,
+        "frequent_words": false
+    }
+}

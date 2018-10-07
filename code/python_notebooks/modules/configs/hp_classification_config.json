@@ -1,0 +1,55 @@
+{
+    "classification_features": [
+    {
+        "user_type": true,
+        "num_tweets": true,
+        "num_followers": true,
+        "num_followings": true,
+        "about_me_length": true,
+        "user_name_length": true,
+        "num_annotations": true,
+        "num_http": true,
+        "tweet_avg_length": true,
+        "num_unique_words": true,
+        "dt_entropy": true
+    },
+    {
+        "user_type": true,
+        "num_tweets": true,
+        "num_followers": true,
+        "num_followings": true,
+        "about_me_length": true,
+        "user_name_length": true,
+        "num_annotations": true,
+        "num_http": true,
+        "tweet_avg_length": true,
+        "num_unique_words": true,
+        "dt_entropy": true
+    },
+    {
+        "user_type": true,
+        "num_tweets": true,
+        "num_followers": true,
+        "num_followings": true,
+        "about_me_length": true,
+        "user_name_length": true,
+        "num_annotations": true,
+        "num_http": true,
+        "tweet_avg_length": true,
+        "num_unique_words": true,
+        "dt_entropy": true
+    }],
+    "classification_models":
+    {
+        "decision_tree": true,
+        "random_forest": true,
+        "adaboosted_dt": true,
+        "linear_svc": true
+    },
+    "k_fold":
+    {
+        "folds": 10,
+        "train": 0.6
+    }
+
+}

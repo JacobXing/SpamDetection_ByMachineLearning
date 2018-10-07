@@ -1,0 +1,319 @@
+Executing Pseudo-Main with the following params:
+ {
+    "14_million": {
+        "classification": true,
+        "clustering": true,
+        "feature_engineering": true,
+        "in_use": false,
+        "preprocessing": true
+    },
+    "hp": {
+        "hp_classification": true,
+        "hp_clustering": true,
+        "hp_dynamic_feature_generation": true,
+        "hp_preprocessing": true,
+        "in_use": true
+    }
+}
+
+Preprocessing static and dynamic features..
+
+../preprocessing/hp_preprocessing.py:122: DtypeWarning: Columns (0,1) have mixed types. Specify dtype option on import or set low_memory=False.
+  dynamic_df = preprocess_dynamic_features(dirs['dynamic_imports'])
+../preprocessing/hp_preprocessing.py:64: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  cp_tweets_set['user_type'] = 1
+../preprocessing/hp_preprocessing.py:65: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  lu_tweets_set['user_type'] = 0
+
+Preprocessing completed in 26.851747751235962 seconds. Preprocessed files saved to:
+
+ ../../../data_sets/honey_pot/final_features/static_features.csv
+../../../data_sets/honey_pot/preprocessed/dynamic_features_intermediate.csv
+
+Generating dynamic features for honeypot dataset..
+
+Executing Feature Engineering with the following params:
+ {
+    "count_vector": {
+        "max_doc_frequency": 0.85,
+        "min_doc_frequency": 0.15,
+        "ngram_range": [
+            1,
+            2
+        ]
+    },
+    "lda_modelling": {
+        "iterations": 5,
+        "lda_topics": 5
+    }
+}
+../feature_engineering/dynamic_features.py:117: RuntimeWarning: invalid value encountered in double_scalars
+  return loss_numerator / loss_denominator
+
+Dynamic feature generation completed in 6852.00127696991 seconds. Features saved to:
+ ../../../data_sets/honey_pot/final_features/dynamic_features.csv
+
+Performing cluster filtering for honeypot dataset..
+Executing Clustering with the following params:
+ {
+    "cluster_config": {
+        "clusters": 3,
+        "max_iterations": 300
+    },
+    "clustering_features": {
+        "about_me_length": false,
+        "frequent_words": false,
+        "num_annotations": false,
+        "num_followers": false,
+        "num_followings": false,
+        "num_http": false,
+        "num_tweets": false,
+        "num_unique_words": true,
+        "td_entropy": true,
+        "tweet_avg_length": false,
+        "user_name_length": false
+    }
+}
+{
+    "cluster0": {
+        "composition": {
+            "0": 6359,
+            "1": 6236
+        },
+        "size": 12595
+    },
+    "cluster1": {
+        "composition": {
+            "0": 8888,
+            "1": 3747
+        },
+        "size": 12635
+    },
+    "cluster2": {
+        "composition": {
+            "0": 10702,
+            "1": 3640
+        },
+        "size": 14342
+    },
+    "total_entries": 39572
+}
+
+Cluster filtering completed in 2.701836347579956 seconds. Individual frames saved to:
+
+ ../../../data_sets/honey_pot/final_features/cluster_frames
+
+Performing classification upon final dataframe/s for honeypot dataset..
+
+Executing Classification with the following params:
+ {
+    "classification_features": [
+        {
+            "about_me_length": true,
+            "dt_entropy": true,
+            "num_annotations": true,
+            "num_followers": true,
+            "num_followings": true,
+            "num_http": true,
+            "num_tweets": true,
+            "num_unique_words": true,
+            "tweet_avg_length": true,
+            "user_name_length": true,
+            "user_type": true
+        },
+        {
+            "about_me_length": true,
+            "dt_entropy": true,
+            "num_annotations": true,
+            "num_followers": true,
+            "num_followings": true,
+            "num_http": true,
+            "num_tweets": true,
+            "num_unique_words": true,
+            "tweet_avg_length": true,
+            "user_name_length": true,
+            "user_type": true
+        },
+        {
+            "about_me_length": true,
+            "dt_entropy": true,
+            "num_annotations": true,
+            "num_followers": true,
+            "num_followings": true,
+            "num_http": true,
+            "num_tweets": true,
+            "num_unique_words": true,
+            "tweet_avg_length": true,
+            "user_name_length": true,
+            "user_type": true
+        }
+    ],
+    "classification_models": {
+        "adaboosted_dt": true,
+        "decision_tree": true,
+        "linear_svc": true,
+        "random_forest": true
+    },
+    "k_fold": {
+        "folds": 10,
+        "train": 0.6
+    }
+}
+Generating models for cluster0.csv
+decision_tree Accuracy: 0.86 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.86      0.85      0.85      2494
+          1       0.86      0.86      0.86      2544
+
+avg / total       0.86      0.86      0.86      5038
+
+Confusion matrix:
+ [[2124  370]
+ [ 351 2193]]
+random_forest Accuracy: 0.90 (+/- 0.00)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.89      0.91      0.90      2494
+          1       0.91      0.89      0.90      2544
+
+avg / total       0.90      0.90      0.90      5038
+
+Confusion matrix:
+ [[2268  226]
+ [ 292 2252]]
+adaboosted_dt Accuracy: 0.90 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.90      0.90      0.90      2494
+          1       0.90      0.91      0.90      2544
+
+avg / total       0.90      0.90      0.90      5038
+
+Confusion matrix:
+ [[2233  261]
+ [ 240 2304]]
+linear_svc Accuracy: 0.78 (+/- 0.21)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.93      0.51      0.66      2494
+          1       0.67      0.96      0.79      2544
+
+avg / total       0.80      0.74      0.73      5038
+
+Confusion matrix:
+ [[1274 1220]
+ [  90 2454]]
+Generating models for cluster1.csv
+decision_tree Accuracy: 0.88 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.79      0.81      0.80      1499
+          1       0.92      0.91      0.91      3555
+
+avg / total       0.88      0.88      0.88      5054
+
+Confusion matrix:
+ [[1210  289]
+ [ 324 3231]]
+random_forest Accuracy: 0.91 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.83      0.87      0.85      1499
+          1       0.94      0.92      0.93      3555
+
+avg / total       0.91      0.91      0.91      5054
+
+Confusion matrix:
+ [[1297  202]
+ [ 267 3288]]
+adaboosted_dt Accuracy: 0.91 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.86      0.83      0.84      1499
+          1       0.93      0.94      0.94      3555
+
+avg / total       0.91      0.91      0.91      5054
+
+Confusion matrix:
+ [[1239  260]
+ [ 196 3359]]
+linear_svc Accuracy: 0.79 (+/- 0.26)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.75      0.84      0.79      1499
+          1       0.93      0.88      0.90      3555
+
+avg / total       0.88      0.87      0.87      5054
+
+Confusion matrix:
+ [[1252  247]
+ [ 414 3141]]
+Generating models for cluster2.csv
+decision_tree Accuracy: 0.91 (+/- 0.00)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.94      0.94      0.94      4281
+          1       0.82      0.83      0.83      1456
+
+avg / total       0.91      0.91      0.91      5737
+
+Confusion matrix:
+ [[4020  261]
+ [ 244 1212]]
+random_forest Accuracy: 0.94 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.95      0.97      0.96      4281
+          1       0.90      0.86      0.88      1456
+
+avg / total       0.94      0.94      0.94      5737
+
+Confusion matrix:
+ [[4140  141]
+ [ 211 1245]]
+adaboosted_dt Accuracy: 0.93 (+/- 0.01)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.95      0.96      0.96      4281
+          1       0.88      0.86      0.87      1456
+
+avg / total       0.93      0.93      0.93      5737
+
+Confusion matrix:
+ [[4110  171]
+ [ 202 1254]]
+linear_svc Accuracy: 0.79 (+/- 0.13)
+Classification report:
+              precision    recall  f1-score   support
+
+          0       0.93      0.82      0.87      4281
+          1       0.61      0.81      0.70      1456
+
+avg / total       0.85      0.82      0.83      5737
+
+Confusion matrix:
+ [[3525  756]
+ [ 270 1186]]
+
+Classifications completed in 33.31196212768555 seconds.
+ Output saved to ../../output/classification_results.json

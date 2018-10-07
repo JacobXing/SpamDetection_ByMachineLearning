@@ -1,0 +1,19 @@
+{
+    "hp":
+    {
+        "in_use": true,
+        "hp_preprocessing": true,
+        "hp_dynamic_feature_generation": true,
+        "hp_clustering": true,
+        "hp_classification": true
+    },
+    "14_million":
+    {
+        "in_use": false,
+        "preprocessing": true,
+        "feature_engineering": true,
+        "clustering": true,
+        "classification": true
+    }
+
+}
